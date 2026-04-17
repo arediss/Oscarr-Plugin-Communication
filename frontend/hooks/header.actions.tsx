@@ -148,26 +148,27 @@ export default function CommunicationHeaderAction({ context }: Props) {
       </button>
 
       {open && (
-        <div
-          ref={overlayRef}
-          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md animate-fade-in overflow-y-auto"
-          onMouseDown={(e) => { mouseDownOnBackdropRef.current = e.target === e.currentTarget; }}
-          onClick={(e) => {
-            if (e.target !== e.currentTarget) return;
-            if (!mouseDownOnBackdropRef.current) return;
-            handleClose();
-          }}
-        >
+        <>
           <button
             onClick={handleClose}
-            className="fixed top-6 right-6 z-10 p-2.5 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-md text-white/70 hover:text-white transition-colors border border-white/10"
+            className="fixed top-6 right-6 z-[60] p-2.5 rounded-full bg-white/5 hover:bg-white/10 backdrop-blur-md text-white/70 hover:text-white transition-colors border border-white/10"
             aria-label="Close announcements"
           >
             <X className="w-5 h-5" />
           </button>
 
-          <div className="min-h-full flex items-start justify-center px-4 py-16">
-            <div className="w-full max-w-3xl">
+          <div
+            ref={overlayRef}
+            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md animate-fade-in overflow-y-auto"
+            onMouseDown={() => { mouseDownOnBackdropRef.current = true; }}
+            onClick={() => {
+              if (!mouseDownOnBackdropRef.current) return;
+              mouseDownOnBackdropRef.current = false;
+              handleClose();
+            }}
+          >
+            <div className="min-h-full flex items-start justify-center px-4 py-16">
+              <div className="w-full max-w-3xl">
               {loading && announcements.length === 0 && (
                 <div className="flex items-center justify-center py-16">
                   <div className="w-6 h-6 border-2 border-ndp-accent/30 border-t-ndp-accent rounded-full animate-spin" />
@@ -181,20 +182,21 @@ export default function CommunicationHeaderAction({ context }: Props) {
                 </div>
               )}
 
-              {announcements.length > 0 && (
-                <div className="space-y-4">
-                  {announcements.map((a) => (
-                    <AnnouncementFrame
-                      key={a.id}
-                      announcement={a}
-                      isUnread={readMap[a.id] !== a.updatedAt}
-                    />
-                  ))}
-                </div>
-              )}
+                {announcements.length > 0 && (
+                  <div className="space-y-4">
+                    {announcements.map((a) => (
+                      <AnnouncementFrame
+                        key={a.id}
+                        announcement={a}
+                        isUnread={readMap[a.id] !== a.updatedAt}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );
@@ -220,7 +222,11 @@ function AnnouncementFrame({
   `;
 
   return (
-    <article className="bg-ndp-surface rounded-xl border border-white/5 shadow-2xl shadow-black/40 overflow-hidden">
+    <article
+      className="bg-ndp-surface rounded-xl border border-white/5 shadow-2xl shadow-black/40 overflow-hidden"
+      onMouseDown={(e) => e.stopPropagation()}
+      onClick={(e) => e.stopPropagation()}
+    >
       <div
         className="relative px-6 py-12 text-center"
         style={{ background: headerBg }}
