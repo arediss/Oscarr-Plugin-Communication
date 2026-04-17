@@ -1,0 +1,26 @@
+{
+  "name": "oscarr-plugin-communication",
+  "version": "0.1.0",
+  "description": "Admin-authored markdown announcements for Oscarr — scheduled, role-targeted, severity-aware.",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js --watch"
+  },
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "@types/react": "^18.3.0",
+    "esbuild": "^0.28.0",
+    "typescript": "^6.0.2"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dompurify": "^3.2.0",
+    "lucide-react": "^1.8.0",
+    "marked": "^17.0.0"
+  }
+}

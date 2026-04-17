@@ -1,0 +1,26 @@
+{
+  "id": "communication",
+  "name": "Communication",
+  "version": "0.1.0",
+  "apiVersion": "v1",
+  "description": "Broadcast markdown announcements to your users — scheduled publishing, role targeting, severity levels.",
+  "author": "Arediss",
+  "entry": "dist/index.js",
+  "frontend": "frontend/index.tsx",
+  "settings": [],
+  "hooks": {
+    "routes": { "prefix": "/api/plugins/communication" },
+    "ui": [
+      {
+        "hookPoint": "admin.tabs",
+        "props": { "label": "Communication", "icon": "Megaphone" },
+        "order": 60
+      },
+      {
+        "hookPoint": "header.actions",
+        "props": {},
+        "order": 20
+      }
+    ]
+  }
+}
