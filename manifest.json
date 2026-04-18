@@ -7,13 +7,26 @@
   "author": "Arediss",
   "entry": "dist/index.js",
   "frontend": "frontend/index.tsx",
+  "capabilities": [
+    "settings:plugin",
+    "permissions"
+  ],
+  "capabilityReasons": {
+    "settings:plugin": "Stores announcements in the plugin data dir (data/plugins/communication/data.json).",
+    "permissions": "Registers admin-only permissions for announcement CRUD routes."
+  },
   "settings": [],
   "hooks": {
-    "routes": { "prefix": "/api/plugins/communication" },
+    "routes": {
+      "prefix": "/api/plugins/communication"
+    },
     "ui": [
       {
         "hookPoint": "admin.tabs",
-        "props": { "label": "Communication", "icon": "Megaphone" },
+        "props": {
+          "label": "Communication",
+          "icon": "Megaphone"
+        },
         "order": 60
       },
       {
@@ -21,6 +34,12 @@
         "props": {},
         "order": 20
       }
+    ]
+  },
+  "engines": {
+    "oscarr": ">=0.6.0 <1.0.0",
+    "testedAgainst": [
+      "0.6.3"
     ]
   }
 }
