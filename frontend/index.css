@@ -1,0 +1,2 @@
+/* Tailwind utilities compiled into the plugin's own CSS bundle. Core ships base + components. */
+@tailwind utilities;
