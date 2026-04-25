@@ -1,7 +1,7 @@
 {
   "id": "communication",
   "name": "Communication",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "apiVersion": "v1",
   "description": "Broadcast markdown announcements to your users — scheduled publishing, role targeting, severity levels.",
   "author": "Arediss",
