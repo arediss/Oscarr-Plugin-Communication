@@ -1,3 +1,6 @@
 node_modules/
 .DS_Store
 *.log
+
+# Build artefact — published as a Release asset by .github/workflows/release.yml
+dist/
